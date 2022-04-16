@@ -1,0 +1,3 @@
+enum GameMode {
+    IMAGE, NUMBER
+}

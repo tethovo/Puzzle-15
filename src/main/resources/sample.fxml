@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<VBox fx:id="wrapPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <MenuBar>
+         <Menu text="Game">
+            <MenuItem text="New" onAction="#generateBoard"></MenuItem>
+            <SeparatorMenuItem/>
+            <MenuItem text="Exit" onAction="#exit"></MenuItem>
+         </Menu>
+         <Menu text="Size">
+            <RadioMenuItem fx:id="size3x3" onAction="#setSize" text="3 x 3"></RadioMenuItem>
+            <RadioMenuItem fx:id="size4x4" onAction="#setSize" text="4 x 4"></RadioMenuItem>
+            <RadioMenuItem fx:id="size5x5" onAction="#setSize" text="5 x 5"></RadioMenuItem>
+         </Menu>
+         <Menu text="Mode">
+            <RadioMenuItem fx:id="modeNumber" onAction="#setMode" text="Numbers"></RadioMenuItem>
+            <RadioMenuItem fx:id="modeImage" onAction="#setMode" text="Picture"></RadioMenuItem>
+         </Menu>
+         <Menu text="Image">
+            <MenuItem text="Upload" onAction="#uploadImage"></MenuItem>
+         </Menu>
+         <Menu text="Help">
+            <MenuItem text="About" onAction="#help"></MenuItem>
+         </Menu>
+         <Menu text="Solve it!">
+            <MenuItem text="Solution" onAction="#solve"></MenuItem>
+         </Menu>
+      </MenuBar>
+      <GridPane fx:id="pane">
+         <children>
+         </children>
+      </GridPane>
+   </children>
+</VBox>
+
