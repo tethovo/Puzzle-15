@@ -28,12 +28,13 @@ public class Controller implements Initializable {
     private static final List<Movement> commands = Arrays.asList(new MoveUp(), new MoveDown(), new MoveLeft(), new MoveRight());
     private static final int DEFAULT_BUTTON_SPEED = 500;
     private static final int MENU_SIZE = 30;
+    private static final String HELP = "This is puzzle game, available in 2 modes: numbers or picture.\n Please select correct size before uploading image.";
+    private final Stack<Movement> path = new Stack<>();
     private int size = 3;
     private int userMoves = 0;
     private int actualMoves = 0;
     private Board currentBoard;
     private GameMode currentMode = GameMode.NUMBER;
-    private Stack<Movement> path = new Stack<>();
 
     @FXML
     private VBox wrapPane;
@@ -94,9 +95,9 @@ public class Controller implements Initializable {
 
     private void shuffle() {
         SequentialTransition sq = new SequentialTransition();
-        int stepCounter = newRandom(size * 4, size * 5);
+        int counter = newRandom(size * 8, size * 10);
         Movement previousStep = null;
-        for (int i = 0; i < stepCounter; i++) {
+        for (int i = 0; i < counter; i++) {
             int direction = newRandom(0, 4);
             Movement currentStep = commands.get(direction);
             if (previousStep != null && (currentStep.opposite(previousStep) || currentStep == previousStep)) {
@@ -132,31 +133,10 @@ public class Controller implements Initializable {
                 }
             }
             b.setDisable(false);
-            if (isWinState()) {
+            if (currentBoard.isWinState()) {
                 showWinDialog();
             }
         }
-    }
-
-    private boolean isWinState() {
-        int lastIndex = currentBoard.getSize() - 1;
-        if (currentBoard.getEmptyCellI() != lastIndex || currentBoard.getEmptyCellJ() != lastIndex) {
-            return false;
-        }
-        int value = 1;
-        for (int i = 0; i < currentBoard.getSize(); i++) {
-            for (int j = 0; j < currentBoard.getSize(); j++) {
-                Button button = currentBoard.getButtons()[i][j];
-                if (button != null) {
-                    int buttonValue = Integer.parseInt(button.getId());
-                    if (buttonValue != value) {
-                        return false;
-                    }
-                }
-                value++;
-            }
-        }
-        return true;
     }
 
     private void showWinDialog() {
@@ -173,7 +153,8 @@ public class Controller implements Initializable {
 
     @FXML
     private void setSize(ActionEvent e) {
-        if (e.getSource() instanceof RadioMenuItem source) {
+        if (e.getSource() instanceof RadioMenuItem) {
+            RadioMenuItem source = (RadioMenuItem) e.getSource();
             String id = source.getId();
             Toggle selected = source.getToggleGroup().getSelectedToggle();
             source.getToggleGroup().getToggles().forEach(t -> t.setSelected(false));
@@ -183,9 +164,7 @@ public class Controller implements Initializable {
                 case "size4x4" -> this.size = 4;
                 case "size5x5" -> this.size = 5;
             }
-            removeNodes();
-            Board board = currentMode == GameMode.NUMBER ? new NumberBoard(size) : new ImageBoard(size, null);
-            setupBoard(board);
+            generateBoard();
         }
     }
 
@@ -230,9 +209,9 @@ public class Controller implements Initializable {
         dialog.initModality(Modality.NONE);
         dialog.initOwner(this.wrapPane.getScene().getWindow());
         VBox dialogVbox = new VBox(100);
-        Text result = new Text(String.format("This is puzzle game, available in 2 modes: numbers or picture.\n Please select correct size before uploading image.", userMoves, actualMoves));
+        Text result = new Text(HELP);
         dialogVbox.getChildren().add(result);
-        Scene dialogScene = new Scene(dialogVbox, 200, 50);
+        Scene dialogScene = new Scene(dialogVbox, 350, 50);
         dialog.setScene(dialogScene);
         dialog.show();
     }

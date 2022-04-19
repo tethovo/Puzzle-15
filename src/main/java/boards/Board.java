@@ -59,4 +59,26 @@ public abstract class Board {
     public void moveEmptyRight() {
         emptyCellJ++;
     }
+
+    public boolean isWinState() {
+        int lastIndex = size - 1;
+        if (getEmptyCellI() != lastIndex || getEmptyCellJ() != lastIndex) {
+            return false;
+        }
+        int value = 1;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                Button button = board[i][j];
+                if (button != null) {
+                    int buttonValue = Integer.parseInt(button.getId());
+                    if (buttonValue != value) {
+                        return false;
+                    }
+                }
+                value++;
+            }
+        }
+        return true;
+    }
+
 }

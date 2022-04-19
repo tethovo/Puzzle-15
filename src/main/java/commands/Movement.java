@@ -1,7 +1,6 @@
 package commands;
 
 import boards.Board;
-import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.scene.control.Button;
 import javafx.util.Duration;

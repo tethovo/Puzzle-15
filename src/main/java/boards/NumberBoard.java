@@ -6,7 +6,7 @@ import javafx.scene.text.FontWeight;
 
 public class NumberBoard extends Board {
 
-    private final int TILE_SIZE = 150;
+    private static final int TILE_SIZE = 150;
 
     public NumberBoard(int size) {
         super(size);

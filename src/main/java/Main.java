@@ -23,7 +23,6 @@ public class Main extends Application{
     @Override
     public void start(Stage stage) throws IOException {
         fxmlLoader.setLocation(getClass().getResource("/sample.fxml"));
-
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setTitle("Puzzle Game");
