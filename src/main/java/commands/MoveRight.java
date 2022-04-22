@@ -6,12 +6,12 @@ public class MoveRight extends Movement {
 
     @Override
     public boolean isAllowed(Board board, int i, int j) {
-        return areIndexesCorrect(i, j, board.getSize()) && board.getEmptyCellI() == i && j + 1 == board.getEmptyCellJ();
+        return areIndexesCorrect(i, j, board.getSize()) && board.emptyI() == i && j + 1 == board.emptyJ();
     }
 
     @Override
     public boolean isAllowed(Board board) {
-        return isAllowed(board, board.getEmptyCellI(), board.getEmptyCellJ() - 1);
+        return isAllowed(board, board.emptyI(), board.emptyJ() - 1);
     }
 
     @Override
@@ -33,6 +33,6 @@ public class MoveRight extends Movement {
 
     @Override
     public void moveEmpty(Board board, int speed) {
-        move(board, board.getEmptyCellI(), board.getEmptyCellJ() - 1, speed);
+        move(board, board.emptyI(), board.emptyJ() - 1, speed);
     }
 }

@@ -6,12 +6,12 @@ public class MoveDown extends Movement {
 
     @Override
     public boolean isAllowed(Board board, int i, int j) {
-        return areIndexesCorrect(i, j, board.getSize()) && board.getEmptyCellJ() == j && i + 1 == board.getEmptyCellI();
+        return areIndexesCorrect(i, j, board.getSize()) && board.emptyJ() == j && i + 1 == board.emptyI();
     }
 
     @Override
     public boolean isAllowed(Board board) {
-        return isAllowed(board, board.getEmptyCellI() - 1, board.getEmptyCellJ());
+        return isAllowed(board, board.emptyI() - 1, board.emptyJ());
     }
 
     @Override
@@ -32,6 +32,6 @@ public class MoveDown extends Movement {
     }
 
     public void moveEmpty(Board board, int speed) {
-        move(board, board.getEmptyCellI() - 1, board.getEmptyCellJ(), speed);
+        move(board, board.emptyI() - 1, board.emptyJ(), speed);
     }
 }

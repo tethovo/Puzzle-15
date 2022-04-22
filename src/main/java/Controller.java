@@ -100,7 +100,7 @@ public class Controller implements Initializable {
         for (int i = 0; i < counter; i++) {
             int direction = newRandom(0, 4);
             Movement currentStep = commands.get(direction);
-            if (previousStep != null && (currentStep.opposite(previousStep) || currentStep == previousStep)) {
+            if (previousStep != null && currentStep.opposite(previousStep)) {
                 continue;
             }
             if (currentStep.isAllowed(currentBoard)) {
@@ -197,6 +197,7 @@ public class Controller implements Initializable {
                 }
             }
         }
+        path.clear();
     }
 
     public void exit() {
@@ -232,8 +233,7 @@ public class Controller implements Initializable {
         removeNodes();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter filterJpg = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
-        FileChooser.ExtensionFilter filterPng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
-        fileChooser.getExtensionFilters().addAll(filterJpg, filterPng);
+        fileChooser.getExtensionFilters().addAll(filterJpg);
         File file = fileChooser.showOpenDialog(null);
         currentMode = GameMode.IMAGE;
         modeImage.setSelected(true);

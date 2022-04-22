@@ -17,7 +17,7 @@ public class ImageBoard extends Board {
 
     private static final String FOLDER = "/pictures/";
     private static final String DEFAULT_IMAGE = "flowers.jpeg";
-    private final int BORDER_WIDTH = 2;
+    private static final int BORDER_WIDTH = 2;
 
     public ImageBoard(int size, File file) {
         super(size);

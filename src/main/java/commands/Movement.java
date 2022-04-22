@@ -25,7 +25,7 @@ public abstract class Movement {
     public void move(Board board, int i, int j, int speed) {
         Button b = board.getButtons()[i][j];
         transition = new TranslateTransition(Duration.millis(speed), b);
-        board.getButtons()[board.getEmptyCellI()][board.getEmptyCellJ()] = board.getButtons()[i][j];
+        board.getButtons()[board.emptyI()][board.emptyJ()] = board.getButtons()[i][j];
         board.getButtons()[i][j] = null;
     }
 

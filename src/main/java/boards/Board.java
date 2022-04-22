@@ -36,11 +36,11 @@ public abstract class Board {
         return board;
     }
 
-    public int getEmptyCellJ() {
+    public int emptyJ() {
         return emptyCellJ;
     }
 
-    public int getEmptyCellI() {
+    public int emptyI() {
         return emptyCellI;
     }
 
@@ -62,7 +62,7 @@ public abstract class Board {
 
     public boolean isWinState() {
         int lastIndex = size - 1;
-        if (getEmptyCellI() != lastIndex || getEmptyCellJ() != lastIndex) {
+        if (emptyI() != lastIndex || emptyJ() != lastIndex) {
             return false;
         }
         int value = 1;

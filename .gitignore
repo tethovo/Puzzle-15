@@ -6,8 +6,4 @@
 .idea
 .gradle
 build
-build.gradle
-gradle
-gradlew
-gradlew.bat
-settings.gradle
+
